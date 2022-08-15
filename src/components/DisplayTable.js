@@ -26,52 +26,60 @@ export default function DisplayTable() {
 
   return (
     <div>
-      <TableContainer className="table table-striped">
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>ID</TableCell>
-              <TableCell>First Name</TableCell>
-              <TableCell>Last Name</TableCell>
-              <TableCell>Date of Birth</TableCell>
-              <TableCell>Address</TableCell>
-              <TableCell>Date of Joining</TableCell>
-              <TableCell>Salary</TableCell>
-              <TableCell>Designation</TableCell>
-            </TableRow>
-          </TableHead>
-          <input
-            type="text"
-            placeholder="Search by name..."
-            className="search"
-            onChange={(event) => {
-              setSearchTerm(event.target.value);
-            }}
-          />
-          <TableBody>
-            {table.filter((item) => {
-                if (searchTerm == "") {
-                    return item
-                } else if (item.first_name.toLowerCase().includes(searchTerm.toLowerCase())) {
-                    return item
-                }
-            }).map((item) => {
-              return (
-                <TableRow key={item.id}>
-                  <TableCell>{item.id}</TableCell>
-                  <TableCell>{item.first_name}</TableCell>
-                  <TableCell>{item.last_name}</TableCell>
-                  <TableCell>{item.date_of_birth}</TableCell>
-                  <TableCell>{item.address}</TableCell>
-                  <TableCell>{item.date_of_joining}</TableCell>
-                  <TableCell>{item.salary}</TableCell>
-                  <TableCell>{item.designation}</TableCell>
-                </TableRow>
-              );
-            })}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <Paper sx={{ width: "100%", overflow: "hidden" }}>
+        <TableContainer sx={{ maxHeight: 700 }}>
+          <Table stickyHeader aria-label="sticky table">
+            <TableHead>
+              <TableRow>
+                <TableCell>ID</TableCell>
+                <TableCell>First Name</TableCell>
+                <TableCell>Last Name</TableCell>
+                <TableCell>Date of Birth</TableCell>
+                <TableCell>Address</TableCell>
+                <TableCell>Date of Joining</TableCell>
+                <TableCell>Salary</TableCell>
+                <TableCell>Designation</TableCell>
+              </TableRow>
+            </TableHead>
+            <input
+              type="text"
+              placeholder="Search by name..."
+              className="search"
+              onChange={(event) => {
+                setSearchTerm(event.target.value);
+              }}
+            />
+            <TableBody>
+              {table
+                .filter((item) => {
+                  if (searchTerm === "") {
+                    return item;
+                  } else if (
+                    item.first_name
+                      .toLowerCase()
+                      .includes(searchTerm.toLowerCase())
+                  ) {
+                    return item;
+                  }
+                })
+                .map((item) => {
+                  return (
+                    <TableRow key={item.id}>
+                      <TableCell>{item.id}</TableCell>
+                      <TableCell>{item.first_name}</TableCell>
+                      <TableCell>{item.last_name}</TableCell>
+                      <TableCell>{item.date_of_birth}</TableCell>
+                      <TableCell>{item.address}</TableCell>
+                      <TableCell>{item.date_of_joining}</TableCell>
+                      <TableCell>{item.salary}</TableCell>
+                      <TableCell>{item.designation}</TableCell>
+                    </TableRow>
+                  );
+                })}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Paper>
     </div>
   );
 }
