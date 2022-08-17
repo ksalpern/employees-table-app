@@ -9,6 +9,7 @@ import {
   TableCell,
   Paper,
 } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const baseURL =
   "https://opensheet.elk.sh/1gH5Kle-styszcHF2G0H8l1w1nDt1RhO9NHNCpHhKK0M/employees";
@@ -27,7 +28,7 @@ export default function DisplayTable() {
   return (
     <div>
       <Paper sx={{ width: "100%", overflow: "hidden" }}>
-        <TableContainer sx={{ maxHeight: 700 }}>
+        <TableContainer sx={{ maxHeight: 800 }}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>
@@ -65,7 +66,7 @@ export default function DisplayTable() {
                 .map((item) => {
                   return (
                     <TableRow key={item.id}>
-                      <TableCell>{item.id}</TableCell>
+                      <TableCell><Link to={`/${item.id}`}>{item.id}</Link></TableCell>
                       <TableCell>{item.first_name}</TableCell>
                       <TableCell>{item.last_name}</TableCell>
                       <TableCell>{item.date_of_birth}</TableCell>
